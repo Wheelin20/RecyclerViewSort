@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModel
 import android.databinding.BindingAdapter
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.View
 import layout.MyAdapter
 
 @BindingAdapter("setSpacecraftAdapter")
@@ -16,13 +17,21 @@ fun setSpacecraftAdapter(recyclerView:RecyclerView, adapter:MyAdapter)
 class SpacecraftViewModel : ViewModel()
 {
     val spacecrafts:ArrayList<String> = ArrayList();
-    lateinit var adapter:MyAdapter
+    var adapter:MyAdapter
 
-    val buttonText = "Sort Button"
+    var sortAsc:Boolean = true
 
     init {
         fillSpacecrafts()
         adapter = MyAdapter(this)
+    }
+
+    fun sortBtnClick(view:View)
+    {
+        if(sortAsc) { spacecrafts.sort() }
+        else { spacecrafts.reverse() }
+
+        sortAsc = !sortAsc
     }
 
     private fun fillSpacecrafts() {
