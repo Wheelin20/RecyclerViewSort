@@ -16,7 +16,7 @@ fun setSpacecraftAdapter(recyclerView:RecyclerView, adapter:MyAdapter)
 
 class SpacecraftViewModel : ViewModel()
 {
-    val spacecrafts:ArrayList<String> = ArrayList();
+    val spacecrafts:ArrayList<String> = ArrayList()
     var adapter:MyAdapter
 
     var sortAsc:Boolean = true
@@ -30,6 +30,8 @@ class SpacecraftViewModel : ViewModel()
     {
         if(sortAsc) { spacecrafts.sort() }
         else { spacecrafts.reverse() }
+
+        adapter.notifyDataSetChanged()
 
         sortAsc = !sortAsc
     }
